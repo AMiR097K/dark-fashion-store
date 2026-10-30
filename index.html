@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOIR | فروشگاه لباس و کفش</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b0b0d;color:#fff;font-family:Tahoma,Arial}
+header{padding:22px 7%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #292929}
+.logo{font-size:27px;font-weight:bold;letter-spacing:4px;color:#d8b46a}
+header a{color:white;text-decoration:none;margin-right:18px}
+.hero{padding:85px 8%;background:linear-gradient(100deg,#111,#29231b);min-height:320px}
+.hero h1{font-size:42px;margin:10px 0}
+.hero p{color:#bbb;line-height:2}
+.btn{background:#d8b46a;color:#111;padding:13px 25px;border:0;border-radius:5px;font-weight:bold;cursor:pointer}
+section{padding:35px 7%}
+h2{border-right:4px solid #d8b46a;padding-right:12px}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px}
+.card{background:#171719;border:1px solid #303033;border-radius:10px;overflow:hidden}
+.photo{height:175px;display:grid;place-items:center;background:linear-gradient(140deg,#25252a,#414149);font-size:65px}
+.info{padding:17px}
+.info p{color:#aaa}
+.price{color:#d8b46a;font-weight:bold}
+.card button{width:100%;margin-top:12px}
+.cart{background:#171719;padding:18px;border-radius:9px}
+footer{text-align:center;padding:30px;color:#888;border-top:1px solid #292929}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">NOIR.</div>
+<nav>
+<a href="#home">خانه</a>
+<a href="#products">محصولات</a>
+<a href="#cart">سبد خرید</a>
+</nav>
+</header>
+
+<div class="hero" id="home">
+<p>NEW COLLECTION / 2026</p>
+<h1>استایل متفاوت،<br>انتخاب متفاوت</h1>
+<p>جدیدترین لباس‌ها و کفش‌ها با طراحی مدرن و خاص</p>
+<a href="#products"><button class="btn">مشاهده محصولات</button></a>
+</div>
+
+<section id="products">
+<h2>محصولات منتخب</h2>
+<div class="products">
+<div class="card">
+<div class="photo">👟</div>
+<div class="info">
+<h3>کتونی اسپرت</h3>
+<p>مناسب استایل روزمره</p>
+<div class="price">۲٬۵۰۰٬۰۰۰ تومان</div>
+<button class="btn" onclick="add('کتونی اسپرت',2500000)">افزودن به سبد</button>
+</div></div>
+
+<div class="card">
+<div class="photo">👕</div>
+<div class="info">
+<h3>تی‌شرت مشکی</h3>
+<p>طراحی ساده و مدرن</p>
+<div class="price">۸۵۰٬۰۰۰ تومان</div>
+<button class="btn" onclick="add('تی‌شرت مشکی',850000)">افزودن به سبد</button>
+</div></div>
+
+<div class="card">
+<div class="photo">🧥</div>
+<div class="info">
+<h3>هودی اورسایز</h3>
+<p>استایل خیابانی</p>
+<div class="price">۱٬۷۰۰٬۰۰۰ تومان</div>
+<button class="btn" onclick="add('هودی اورسایز',1700000)">افزودن به سبد</button>
+</div></div>
+
+<div class="card">
+<div class="photo">👖</div>
+<div class="info">
+<h3>شلوار جین</h3>
+<p>مناسب استایل روزانه</p>
+<div class="price">۱٬۴۰۰٬۰۰۰ تومان</div>
+<button class="btn" onclick="add('شلوار جین',1400000)">افزودن به سبد</button>
+</div></div>
+</div>
+</section>
+
+<section id="cart">
+<h2>سبد خرید</h2>
+<div class="cart">
+<div id="items">هنوز محصولی انتخاب نکرده‌اید.</div>
+<h3 id="total">مجموع: ۰ تومان</h3>
+</div>
+</section>
+
+<footer>NOIR STORE | فروشگاه اینترنتی لباس و کفش</footer>
+
+<script>
+let cart=[];
+function add(name,price){
+cart.push({name,price});
+showCart();
+}
+function showCart(){
+document.getElementById('items').innerHTML=
+cart.map((p,i)=>`${p.name} - ${p.price.toLocaleString('fa-IR')} تومان <button onclick="removeItem(${i})">حذف</button>`).join('<hr>');
+let sum=cart.reduce((s,p)=>s+p.price,0);
+document.getElementById('total').innerText='مجموع: '+sum.toLocaleString('fa-IR')+' تومان';
+}
+function removeItem(i){
+cart.splice(i,1);
+showCart();
+if(cart.length===0)document.getElementById('items').innerText='هنوز محصولی انتخاب نکرده‌اید.';
+}
+</script>
+</body>
+</html>
